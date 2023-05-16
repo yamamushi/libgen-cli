@@ -37,9 +37,14 @@ func TestSearch(t *testing.T) {
 
 func TestGetDetails(t *testing.T) {
 	books, err := GetDetails(&GetDetailsOptions{
-		Hashes:       []string{"2F2DBA2A621B693BB95601C16ED680F8", "06E6135019C8F2F43158ABA9ABDC610E"},
+		Hashes: []string{
+			"2F2DBA2A621B693BB95601C16ED680F8", // extension = gz
+			"06E6135019C8F2F43158ABA9ABDC610E", // extension = djvu
+			"553907CDF5F03AF78950561F42F1571A", // extension = pdf
+		},
 		SearchMirror: GetWorkingMirror(SearchMirrors),
 		Print:        false,
+		Extension:    []string{"gz", "djvu"},
 	})
 	if err != nil {
 		t.Error(err)
@@ -48,6 +53,11 @@ func TestGetDetails(t *testing.T) {
 		t.Error()
 	}
 	if books[1].Title != "You failed your math test, Comrade Einstein (about Soviet antisemitism)" {
+		t.Error()
+	}
+
+	if len(books) != 2 {
+		// should have filtered by extension
 		t.Error()
 	}
 }

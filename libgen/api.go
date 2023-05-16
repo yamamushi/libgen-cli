@@ -160,10 +160,14 @@ func GetDetails(options *GetDetailsOptions) ([]*Book, error) {
 			continue
 		}
 		if len(options.Extension) > 0 {
+			validExtension := false
 			for _, ext := range options.Extension {
-				if ext != book.Extension {
-					continue
+				if ext == book.Extension {
+					validExtension = true
 				}
+			}
+			if !validExtension {
+				continue
 			}
 		}
 		if options.Year != 0 {
