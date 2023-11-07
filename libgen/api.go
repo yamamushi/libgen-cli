@@ -18,7 +18,7 @@ import (
 	"crypto/tls"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"math/rand"
 	"net/http"
@@ -83,7 +83,6 @@ type GetDetailsOptions struct {
 // hashes of matches found from the search query provided.
 func Search(options *SearchOptions) ([]*Book, error) {
 	// libgen search only allows query Results of 25, 50 or 100.
-	// We handle that here
 	var res int
 	switch {
 	case options.Results <= 25:
@@ -95,7 +94,6 @@ func Search(options *SearchOptions) ([]*Book, error) {
 	}
 
 	// Define DownloadURL with required query parameters
-	options.SearchMirror.Path = "search.php"
 	q := options.SearchMirror.Query()
 	q.Set("req", options.Query)
 	q.Set("lg_topic", "libgen")
@@ -266,7 +264,7 @@ func getBody(baseURL string) ([]byte, error) {
 		return nil, fmt.Errorf("unable to reach to mirror %v: %v", baseURL, r.StatusCode)
 	}
 
-	b, err := ioutil.ReadAll(r.Body)
+	b, err := io.ReadAll(r.Body)
 	if err != nil {
 		return nil, err
 	}

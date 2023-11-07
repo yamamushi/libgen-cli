@@ -10,18 +10,18 @@ jobs:
   build:
     strategy:
       matrix:
-        go-version: [1.13, 1.14, 1.15, 1.16, 1.17, 1.18]
+        go-version: [1.20.0]
         platform: [ubuntu-latest]
     runs-on: ${{ matrix.platform }}
     steps:
     - name: Install Go
       id: install-go
-      uses: actions/setup-go@v3
+      uses: actions/setup-go@v4
       with:
         go-version: ${{ matrix.go-version }}
     - name: Checkout Code
       id: checkout-code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Install Dependencies
       id: install-deps
       run: go mod download
@@ -40,18 +40,18 @@ jobs:
   test:
     strategy:
       matrix:
-        go-version: [1.18]
+        go-version: [1.20.0]
         platform: [ubuntu-latest]
     runs-on: ${{ matrix.platform }}
     steps:
     - name: Install Go
       id: install-go
-      uses: actions/setup-go@v3
+      uses: actions/setup-go@v4
       with:
         go-version: ${{ matrix.go-version }}
     - name: Checkout Code
       id: checkout-code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: Install Dependencies
       id: install-deps
       run: go mod download
