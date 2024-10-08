@@ -37,7 +37,7 @@ var SearchMirrors = []url.URL{
 	{
 		Scheme: "https",
 		Host:   "libgen.gs",
-		Path:   "search.php",
+		Path:   "index.php",
 	},
 	//{
 	//	Scheme: "https",
