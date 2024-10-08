@@ -23,7 +23,7 @@ import (
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 
-	"github.com/ciehanski/libgen-cli/libgen"
+	"github.com/yamamushi/libgen-cli/libgen"
 )
 
 // statusCmd represents the status command

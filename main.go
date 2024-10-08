@@ -20,8 +20,8 @@ import (
 	"net/http"
 	"os"
 
-	libgen_cli "github.com/ciehanski/libgen-cli/cmd/libgen-cli"
-	"github.com/ciehanski/libgen-cli/libgen"
+	libgen_cli "github.com/yamamushi/libgen-cli/cmd/libgen-cli"
+	"github.com/yamamushi/libgen-cli/libgen"
 )
 
 func main() {
